@@ -45,6 +45,8 @@ jobs:
       - name: Copy built website to main directory
         run: |
           cp -a realm/apps/web/dist/. .
+          mkdir -p blog
+          cp -a realm/apps/blog/dist/. blog/
           rm -rf realm
           # Optionally, keep .git, .github, README, etc
           git checkout -- .github || true
