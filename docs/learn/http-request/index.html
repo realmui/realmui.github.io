@@ -481,7 +481,7 @@ const t={preserveBehavior:!1},e=e=>{if("string"==typeof e)return[e,t];const[n,r=
 <span class="line"><span style="color: #F8F8F2">    &#x3C;</span><span style="color: #F92672">trigger-event</span><span style="color: #F8F8F2"> </span><span style="color: #A6E22E">click</span><span style="color: #F8F8F2">=</span><span style="color: #E6DB74">"FetchButton"</span><span style="color: #F8F8F2">></span></span>
 <span class="line"><span style="color: #F8F8F2">      &#x3C;</span><span style="color: #F92672">set-state</span><span style="color: #F8F8F2"> </span><span style="color: #A6E22E">name</span><span style="color: #F8F8F2">=</span><span style="color: #E6DB74">"is-fetching"</span><span style="color: #F8F8F2"> </span><span style="color: #A6E22E">value</span><span style="color: #F8F8F2">=</span><span style="color: #E6DB74">"true"</span><span style="color: #F8F8F2">>&#x3C;/</span><span style="color: #F92672">set-state</span><span style="color: #F8F8F2">></span></span>
 <span class="line"><span style="color: #F8F8F2">      &#x3C;</span><span style="color: #F92672">http-request</span></span>
-<span class="line"><span style="color: #F8F8F2">        </span><span style="color: #A6E22E">url</span><span style="color: #F8F8F2">=</span><span style="color: #E6DB74">"https://realm.codes/api-examples/api.html"</span></span>
+<span class="line"><span style="color: #F8F8F2">        </span><span style="color: #A6E22E">url</span><span style="color: #F8F8F2">=</span><span style="color: #E6DB74">"https://realmui.github.io/api-examples/api.html"</span></span>
 <span class="line"><span style="color: #F8F8F2">        </span><span style="color: #A6E22E">method</span><span style="color: #F8F8F2">=</span><span style="color: #E6DB74">"GET"</span><span style="color: #F8F8F2">></span></span>
 <span class="line"><span style="color: #F8F8F2">        &#x3C;</span><span style="color: #F92672">response-ok</span><span style="color: #F8F8F2">></span></span>
 <span class="line"><span style="color: #F8F8F2">          &#x3C;</span><span style="color: #F92672">set-state</span><span style="color: #F8F8F2"> </span><span style="color: #A6E22E">name</span><span style="color: #F8F8F2">=</span><span style="color: #E6DB74">"content"</span><span style="color: #F8F8F2"> </span><span style="color: #A6E22E">from</span><span style="color: #F8F8F2">=</span><span style="color: #E6DB74">"event"</span><span style="color: #F8F8F2">>&#x3C;/</span><span style="color: #F92672">set-state</span><span style="color: #F8F8F2">></span></span>
@@ -512,7 +512,7 @@ const t={preserveBehavior:!1},e=e=>{if("string"==typeof e)return[e,t];const[n,r=
 <span class="line"><span style="color: #F8F8F2">&#x3C;/</span><span style="color: #F92672">custom-element</span><span style="color: #F8F8F2">></span></span>
 <span class="line"></span>
 <span class="line"><span style="color: #F8F8F2">&#x3C;</span><span style="color: #F92672">http-req-example</span><span style="color: #F8F8F2">>&#x3C;/</span><span style="color: #F92672">http-req-example</span><span style="color: #F8F8F2">></span></span></code></pre>
-<p><import-element from="https://realm.codes/elements/basic-counter.html"></import-element></p>
+<p><import-element from="https://realmui.github.io/elements/basic-counter.html"></import-element></p>
 <custom-element name="http-req-example">
   <element-state name="content" type="html"></element-state>
   <element-state name="error" type="string"></element-state>
@@ -520,7 +520,7 @@ const t={preserveBehavior:!1},e=e=>{if("string"==typeof e)return[e,t];const[n,r=
   <element-flow>
     <trigger-event click="FetchButton">
       <set-state name="is-fetching" value="true"></set-state>
-      <http-request url="https://realm.codes/api-examples/api.html" method="GET">
+      <http-request url="https://realmui.github.io/api-examples/api.html" method="GET">
         <response-ok>
           <set-state name="content" from="event"></set-state>
           <set-state name="is-fetching" value="false"></set-state>
