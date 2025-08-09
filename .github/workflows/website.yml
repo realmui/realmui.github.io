@@ -48,7 +48,8 @@ jobs:
       # Copy build output to the root of current repo (main branch)
       - name: Copy built website to main directory
         run: |
-          rm -rf ./*
+          ls -lah realm
+          ls -lah realm/apps/web
           cp -a realm/apps/web/dist/. .
           # Optionally, keep .git, .github, README, etc
           git checkout -- .git .github README.md || true
