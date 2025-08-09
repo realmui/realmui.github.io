@@ -1,36 +1,63 @@
-# This is a basic workflow to help you get started with Actions
+name: Build Website from realm/main
 
-name: CI
-
-# Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
-
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      # Checkout the current repository (realmui.github.io)
       - uses: actions/checkout@v4
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
+      # Checkout the realm repository at main branch into ./realm
+      - name: Checkout realm repo
+        uses: actions/checkout@v4
+        with:
+          repository: realmui/realm
+          path: realm
+          ref: main
 
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
+      # Set up Node.js and pnpm
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 8
+
+      # Install dependencies and build using Turborepo
+      - name: Install dependencies
         run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+          cd realm
+          pnpm install
+
+      - name: Build all packages (Turborepo)
+        run: |
+          cd realm
+          pnpm turbo run build
+
+      # Copy build output to the root of current repo (main branch)
+      - name: Copy built website to main directory
+        run: |
+          rm -rf ./*
+          cp -a realm/apps/web/dist/. .
+          # Optionally, keep .git, .github, README, etc
+          git checkout -- .git .github README.md || true
+
+      # Optionally, commit and push if you want this workflow to auto-update the branch
+      - name: Commit and push changes
+        run: |
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+          git add .
+          git commit -m "Update website from realm main"
+          git push
