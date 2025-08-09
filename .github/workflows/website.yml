@@ -51,7 +51,7 @@ jobs:
           cp -a realm/apps/web/dist/. .
           rm -rf realm
           # Optionally, keep .git, .github, README, etc
-          git checkout -- .git .github README.md || true
+          git checkout -- .github || true
 
       # Optionally, commit and push if you want this workflow to auto-update the branch
       - name: Commit and push changes
